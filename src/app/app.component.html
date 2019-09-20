@@ -1,0 +1,27 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<marquee direction="right" bgcolor="#C0C0C0">
+           OM NAMA SHIVAAYA
+</marquee>
+<div style="text-align:center">
+  <a [routerLink] ="['/welcome']" title="ABOUT NGIF">
+    <h3>WELCOME TO {{ title }}!</h3>
+  </a>
+</div>
+
+<div class='container'>
+      <router-outlet></router-outlet>
+</div>
+
+<div style="text-align:center" >
+  <nav>
+    <a [routerLink] ="['/login']" title="GO TO NGIF PORTAL"><h2>LOGIN</h2></a>
+  </nav>
+</div>
+
+<div class='container'>
+      <router-outlet></router-outlet>
+</div>
+
+<marquee direction="left" bgcolor="#C0C0C0">
+           VIRTUSA CONSULTING SERVICES
+</marquee>
