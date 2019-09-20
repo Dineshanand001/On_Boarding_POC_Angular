@@ -8,16 +8,8 @@ import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/fo
 })
 export class LoginPageComponent implements OnInit {
 
-  userForm: FormGroup;
+  constructor() { }
 
-  constructor(private builder: FormBuilder) { }
-
-  ngOnInit() {
-    this.userForm = this.builder.group({
-      userName: ['', [Validators.required, Validators.minLength(3)]],
-      password: ['', [Validators.required, Validators.minLength(8)]],
-      email: ['', [Validators.required, Validators.email]],
-    });
-  }
+  ngOnInit() { }
 
 }

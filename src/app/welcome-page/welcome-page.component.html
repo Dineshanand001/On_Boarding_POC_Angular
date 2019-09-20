@@ -2,6 +2,26 @@
   <img width="650" src="./assets/images/logo.jpg">
 </div>
 
+<div style="text-align:center" >
+    <a [routerLink] ="['/login']" title="GO TO NGIF PORTAL">
+      <h4>LOGIN</h4>
+    </a>
+</div>
+
+<div class='container'>
+      <router-outlet></router-outlet>
+</div>
+
+<div style="text-align:center" >
+    <a [routerLink] ="['/signup']" title="SIGN UP FOR A NEW BEGINNING">
+      <h4>SIGN UP</h4>
+    </a>
+</div>
+
+<div class='container'>
+      <router-outlet></router-outlet>
+</div>
+
 <div style="text-align:center"><h5>PROUDLY SPONSORED BY</h5></div>
 
 
