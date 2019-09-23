@@ -8,8 +8,20 @@ import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/fo
 })
 export class LoginPageComponent implements OnInit {
 
-  constructor() { }
+  loginForm: FormGroup;
 
-  ngOnInit() { }
+  constructor(private fb: FormBuilder) { }
+
+  ngOnInit() {
+    this.loginForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(8)]]
+    });
+  }
+
+  validateCred() {
+    console.log(this.loginForm);
+    console.log('Saved: ' + JSON.stringify(this.loginForm.value));
+  }
 
 }

@@ -1,24 +1,32 @@
 <div class="container" style="text-align:center">
   <h2>SIGN UP FOR A NEW BEGINNING</h2>
-  <form>
-    <div class="container">
-      <input type="text" title="firstname" placeholder="Firstname" />
-    </div>
+  <div>
+    <form novalidate [formGroup]="signupForm">
+      <div class="container">
+        <input class="form-control" formControlName="firstName" id="firstname" type="text" title="firstname" placeholder="First Name" />
+      </div>
 
-    <div class="container">
-      <input type="text" title="lastname" placeholder="Lastname" />
-    </div>
+      <div class="container">
+        <input class="form-control" formControlName="lastName" id="lastname" type="text" title="lastname" placeholder="Last Name" />
+      </div>
 
-    <div class="container">
-      <input type="email" title="email" placeholder="Email" />
-    </div>
+      <div class="container">
+        <input class="form-control" formControlName="email" id="email" type="text" title="email" placeholder="abc@virtusa.com" />
+      </div>
 
-    <div class="container">
-      <input type="number" title="phonenumber" placeholder="PhoneNumber" />
-    </div>
+      <div class="container">
+        <input class="form-control" formControlName="phoneNumber" id="phonenumber" type="number" title="phonenumber" placeholder="Phone Number" />
+      </div>
 
-    <div class="container">
-      <button type="submit" class="btn">SIGN UP</button>
-    </div>
-  </form>
+      <div class="container">
+        <button type="submit" class="btn">SIGN UP</button>
+      </div>
+    </form>
+  </div>
 </div>
+
+
+<br>Dirty: {{ signupForm.dirty }}
+<br>Touched: {{ signupForm.touched }}
+<br>Valid: {{ signupForm.valid }}
+<br>Value: {{ signupForm.value | json }}
