@@ -1,25 +1,138 @@
 <div class="container" style="text-align:center">
+  <br>
   <h2>SIGN UP FOR A NEW BEGINNING</h2>
+  <br>
   <div>
-    <form novalidate [formGroup]="signupForm">
-      <div class="container">
-        <input class="form-control" formControlName="firstName" id="firstname" type="text" title="firstname" placeholder="First Name" />
+    <form novalidate (ngSubmit)="save()" [formGroup]="signupForm">
+          
+      <div class="form-group row mb-2">
+          <label class="col-md-4 col-form-label" for="email">Virtusa Email </label>
+          <div class="col-md-4">
+            <input class="form-control" formControlName="email" id="email" type="text" title="email" placeholder="abc@virtusa.com" 
+            [ngClass]="{'is-invalid': (signupForm.get('email').touched || signupForm.get('email').dirty) && !signupForm.get('email').valid }"/>
+            <span class="invalid-feedback">
+                <span *ngIf="signupForm.get('email').errors?.required">
+                  Please enter your email.
+                </span>
+                <span *ngIf="signupForm.get('email').errors?.email">
+                  Enter Valid Email Address
+                </span>
+            </span>
+          </div>
       </div>
 
-      <div class="container">
-        <input class="form-control" formControlName="lastName" id="lastname" type="text" title="lastname" placeholder="Last Name" />
+      <div class="form-group row mb-2">
+        <label class="col-md-4 col-form-label" for="firstname">First Name </label>
+        <div class="col-md-4">
+            <input class="form-control" formControlName="firstName" id="firstname" type="text" title="firstname" placeholder="First Name" 
+            [ngClass]="{'is-invalid': (signupForm.get('firstName').touched || signupForm.get('firstName').dirty) && !signupForm.get('firstName').valid }"/>
+            <span class="invalid-feedback">
+                <span *ngIf="signupForm.get('firstName').errors?.required">
+                  Please enter your First Name.
+                </span>
+            </span>
+        </div>
       </div>
 
-      <div class="container">
-        <input class="form-control" formControlName="email" id="email" type="text" title="email" placeholder="abc@virtusa.com" />
+      <div class="form-group row mb-2">
+        <label class="col-md-4 col-form-label" for="lastname">Last Name </label>
+        <div class="col-md-4">
+            <input class="form-control" formControlName="lastName" id="lastname" type="text" title="lastname" placeholder="Last Name" 
+            [ngClass]="{'is-invalid': (signupForm.get('lastName').touched || signupForm.get('lastName').dirty) && !signupForm.get('lastName').valid }"/>
+            <span class="invalid-feedback">
+                <span *ngIf="signupForm.get('lastName').errors?.required">
+                  Please enter your Last Name.
+                </span>
+                <span *ngIf="signupForm.get('lastName').errors?.maxlength">
+                    Please shorten your Last Name.
+                  </span>
+            </span>
+        </div>
       </div>
 
-      <div class="container">
-        <input class="form-control" formControlName="phoneNumber" id="phonenumber" type="number" title="phonenumber" placeholder="Phone Number" />
+      <div class="form-group row mb-2">
+        <label class="col-md-4 col-form-label" for="phonenumber">Phone Number </label>
+        <div class="col-md-4">
+          <input class="form-control" formControlName="phoneNumber" id="phonenumber" type="text" title="phonenumber" placeholder="Phone Number" 
+          [ngClass]="{'is-invalid': (signupForm.get('phoneNumber').touched || signupForm.get('phoneNumber').dirty) && !signupForm.get('phoneNumber').valid }"/>
+          <span class="invalid-feedback">
+              <span *ngIf="signupForm.get('phoneNumber').errors?.required">
+                Please enter your Phone Number.
+              </span>
+          </span>
+          <span class="invalid-feedback">
+              <span *ngIf="signupForm.get('phoneNumber').errors?.minlength">
+                Please enter valid Phone Number.
+              </span>
+          </span>
+          <span class="invalid-feedback">
+              <span *ngIf="signupForm.get('phoneNumber').errors?.maxlength">
+                Please enter valid Phone Number.
+              </span>
+          </span>
+        </div>
       </div>
 
+      <div class="form-group row mb-2">
+          <label class="col-md-4 col-form-label" for="role">Role </label>
+          <div class="col-md-4">
+              <select class="form-control" formControlName="role" id="role" type="text" title="role" placeholder="Role"
+              [ngClass]="{'is-invalid': (signupForm.get('role').touched || signupForm.get('role').dirty) && !signupForm.get('role').valid }">
+                <option>Developer</option>
+                <option>Tester</option>
+                <option>Manager</option>
+                <option>Director</option>
+              </select>
+              <span class="invalid-feedback">
+                  <span *ngIf="signupForm.get('role').errors?.required">
+                    Please select your Role.
+                  </span>
+              </span>
+          </div>
+        </div>
+
+      <div *ngIf="signupForm.get('role').value == 'Developer' || signupForm.get('role').value == 'Tester'">
+        <div class="form-group row mb-2">
+            <label class="col-md-4 col-form-label" for="managername">Manager Name</label>
+            <div class="col-md-4" >
+              <select class="form-control" formControlName="manager" id="managername" type="text" title="managername" placeholder="Manager Name" 
+              [ngClass]="{'is-invalid': (signupForm.get('manager').touched || signupForm.get('manager').dirty) && !signupForm.get('manager').valid }">
+                <option>Priya</option>
+                <option>YOYO</option>
+                <option>YAYA</option>
+                <option>GOGO</option>
+                <option>TAKI</option>
+              </select>
+              <span class="invalid-feedback">
+                  <span *ngIf="signupForm.get('manager').errors?.required">
+                    Please select your Manager.
+                  </span>
+              </span>
+            </div>
+          </div>
+      </div>
+
+      <div *ngIf="signupForm.get('role').value == 'Manager'">
+          <div class="form-group row mb-2">
+              <label class="col-md-4 col-form-label" for="directorname">Director Name</label>
+              <div class="col-md-4">
+                <select class="form-control" formControlName="director" id="directorname" type="text" title="directorname" placeholder="Director Name"
+                [ngClass]="{'is-invalid': (signupForm.get('director').touched || signupForm.get('director').dirty) && !signupForm.get('director').valid }">
+                  <option>Veera Raghav Chandran</option>
+                </select>
+                <span class="invalid-feedback">
+                    <span *ngIf="signupForm.get('director').errors?.required">
+                      Please select your Director.
+                    </span>
+                </span>
+              </div>
+            </div>
+        </div>
+
+
       <div class="container">
-        <button type="submit" class="btn">SIGN UP</button>
+        <br>
+        <button type="submit" class="btn btn-primary" [disabled]="!signupForm.valid">SIGN UP</button>
       </div>
     </form>
   </div>
@@ -30,3 +143,4 @@
 <br>Touched: {{ signupForm.touched }}
 <br>Valid: {{ signupForm.valid }}
 <br>Value: {{ signupForm.value | json }}
+<br>Form: {{ signupForm }}

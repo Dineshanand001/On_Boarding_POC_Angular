@@ -1,19 +1,49 @@
 <div class="container" style="text-align:center">
+  <br>
   <h2>Login to your account</h2>
-  <div class="container">
+  <br>
+  <div class="card-body">
     <form novalidate [formGroup]="loginForm">
-      <div class="container">
-        <label for="password">Virtusa Email <br /></label>
-        <input class="form-control" formControlName="email" id="email" type="text" title="email" placeholder="abc@virtusa.com" />
+      <div class="form-group row mb-2">
+        <label class="col-md-4 col-form-label" for="password">Virtusa Email </label>
+        <div class="col-md-4">
+            <input class="form-control" formControlName="email" id="email" type="text" title="email" placeholder="abc@virtusa.com"
+            [ngClass]="{'is-invalid': (loginForm.get('email').touched || loginForm.get('email').dirty) && !loginForm.get('email').valid }" />
+            <span class="invalid-feedback">
+                <span *ngIf="loginForm.get('email').errors?.required">
+                  Please enter your email.
+                </span>
+                <span *ngIf="loginForm.get('email').errors?.email">
+                  Enter Valid Email Address
+                </span>
+              </span>
+        </div>
+      </div>
+
+      <div class="form-group row mb-2">
+        <label class="col-md-4 col-form-label" for="password">Password </label>
+        <div class="col-md-4">
+            <input class="form-control" formControlName="password" id="password" type="password" title="password" placeholder="Password"
+            [ngClass]="{'is-invalid': (loginForm.get('password').touched || loginForm.get('password').dirty) && !loginForm.get('password').valid }" />
+            <span class="invalid-feedback">
+                <span *ngIf="loginForm.get('password').errors?.required">
+                  Please enter your password.
+                </span>
+                <span *ngIf="loginForm.get('password').errors?.minlength">
+                  Enter Valid password
+                </span>
+            </span>
+        </div>
       </div>
 
       <div class="container">
-        <label for="password">Password <br /></label>
-        <input class="form-control" formControlName="password" id="password" type="password" title="password" placeholder="Password" />
+        <br>
+        <button type="submit" class="btn btn-primary" (click)="validateCred($event)"
+                  [disabled]="!loginForm.valid">Login</button>
       </div>
 
-      <div class="container">
-        <button type="submit" class="btn" (click)="validateCred()">Login</button>
+      <div *ngIf = "flag">
+        <p>HII</p>
       </div>
     </form>
   </div>
