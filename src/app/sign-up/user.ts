@@ -4,4 +4,6 @@ export class User {
     lastName: string;
     contactNumber: string;
     role: string;
+    manager: string;
+    director: string;
 }
