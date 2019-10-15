@@ -37,16 +37,7 @@
       <div class="form-group row mb-2">
         <label class="col-md-4 col-form-label" for="lastname">Last Name </label>
         <div class="col-md-4">
-            <input class="form-control" formControlName="lastName" id="lastname" type="text" title="lastname" placeholder="Last Name" 
-            [ngClass]="{'is-invalid': (signupForm.get('lastName').touched || signupForm.get('lastName').dirty) && !signupForm.get('lastName').valid }"/>
-            <span class="invalid-feedback">
-                <span *ngIf="signupForm.get('lastName').errors?.required">
-                  Please enter your Last Name.
-                </span>
-                <span *ngIf="signupForm.get('lastName').errors?.maxlength">
-                    Please shorten your Last Name.
-                  </span>
-            </span>
+            <input class="form-control" formControlName="lastName" id="lastname" type="text" title="lastname" placeholder="Last Name" />
         </div>
       </div>
 
@@ -97,11 +88,10 @@
             <div class="col-md-4" >
               <select class="form-control" formControlName="manager" id="managername" type="text" title="managername" placeholder="Manager Name" 
               [ngClass]="{'is-invalid': (signupForm.get('manager').touched || signupForm.get('manager').dirty) && !signupForm.get('manager').valid }">
-                <option>Priya</option>
-                <option>YOYO</option>
-                <option>YAYA</option>
-                <option>GOGO</option>
-                <option>TAKI</option>
+                <option value="" disabled>Choose your Manager</option>
+                <option *ngFor="let data of Manager[0]" [ngValue]="data">
+                  {{data.firstName}}
+                </option>
               </select>
               <span class="invalid-feedback">
                   <span *ngIf="signupForm.get('manager').errors?.required">
@@ -139,8 +129,8 @@
 </div>
 
 
-<br>Dirty: {{ signupForm.dirty }}
+<!-- <br>Dirty: {{ signupForm.dirty }}
 <br>Touched: {{ signupForm.touched }}
 <br>Valid: {{ signupForm.valid }}
 <br>Value: {{ signupForm.value | json }}
-<br>Form: {{ signupForm }}
+<br>Form: {{ signupForm }} -->

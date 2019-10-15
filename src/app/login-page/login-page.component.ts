@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { throwError } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { Resp } from './resp';
 
 @Component({
   selector: 'app-login-page',
@@ -12,7 +14,7 @@ import { Router } from '@angular/router';
 export class LoginPageComponent implements OnInit {
 
   loginForm: FormGroup;
-  validateUrl = 'http://localhost:3000/api/validate';
+  validateUrl = 'http://localhost:10101/login';
   responseStatus: number;
   flag: boolean = false;
 
@@ -28,11 +30,14 @@ export class LoginPageComponent implements OnInit {
   
   validateCred() {
     let data = {cn: `${this.loginForm.get('email').value}` , userPassword:`${this.loginForm.get('password').value}`};
-    this.http.get(this.validateUrl, {params: data, observe: 'response'}).subscribe(
-      data => { console.log('success', data);
-      this.responseStatus = data.status;
+    //this.http.get(this.validateUrl, {params: data, observe: 'response'}).subscribe(
+    this.http.get<Resp>(this.validateUrl, {params: data}).subscribe(
+      resp => { console.log('success', resp);
+      sessionStorage.setItem('Id_token',resp.token);
+      //this.responseStatus = data.status;
       this.router.navigate(['./dashboard']); },
-      error => { this.handleError(error) }
+      //error => { this.handleError(error) 
+      error => { console.log(error)}
     );
   }
     

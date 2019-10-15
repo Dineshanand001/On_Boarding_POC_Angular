@@ -1,4 +1,4 @@
-<div class="container" style="text-align:center">
+<!-- <div class="container" style="text-align:center">
   <br>
   <h2>Login to your account</h2>
   <br>
@@ -42,14 +42,74 @@
                   [disabled]="!loginForm.valid">Login</button>
       </div>
 
-      <div *ngIf = "flag">
-        <p>HII</p>
-      </div>
     </form>
   </div>
-</div>
+</div> -->
 
-<br>Dirty: {{ loginForm.dirty }}
+<!-- <br>Dirty: {{ loginForm.dirty }}
 <br>Touched: {{ loginForm.touched }}
 <br>Valid: {{ loginForm.valid }}
-<br>Value: {{ loginForm.value | json }}
+<br>Value: {{ loginForm.value | json }} -->
+
+<div class="d-md-flex h-md-100 align-items-center">
+
+    <!-- First Half -->
+    
+    <div class="col-md-6 p-0 bg-indigo h-md-100">
+        <div class="text-white d-md-flex align-items-center h-100 p-5 text-center justify-content-center">
+            <div class="logoarea pt-5 pb-5">
+                <img width="550" src="./assets/images/image_Onboarding.png">
+            </div>
+        </div>
+    </div>
+    
+    <!-- Second Half -->
+    
+    <div class="col-md-6 p-0 bg-white h-md-100 loginarea">
+        <div class="d-md-flex align-items-center h-md-100 p-5 justify-content-left">
+                <form novalidate [formGroup]="loginForm">
+                  <div class="form-group row mb-2">
+                    <div class="col-md-12">
+                        <input class="form-control" formControlName="email" id="email" type="text" title="email" placeholder="abc@virtusa.com"
+                        [ngClass]="{'is-invalid': (loginForm.get('email').touched || loginForm.get('email').dirty) && !loginForm.get('email').valid }" />
+                        <span class="invalid-feedback">
+                            <span *ngIf="loginForm.get('email').errors?.required">
+                              Please enter your email.
+                            </span>
+                            <span *ngIf="loginForm.get('email').errors?.email">
+                              Enter Valid Email Address
+                            </span>
+                          </span>
+                    </div>
+                  </div>
+            
+                  <div class="form-group row mb-2">
+                    <div class="col-md-12">
+                        <input class="form-control" formControlName="password" id="password" type="password" title="password" placeholder="Password"
+                        [ngClass]="{'is-invalid': (loginForm.get('password').touched || loginForm.get('password').dirty) && !loginForm.get('password').valid }" />
+                        <span class="invalid-feedback">
+                            <span *ngIf="loginForm.get('password').errors?.required">
+                              Please enter your password.
+                            </span>
+                            <span *ngIf="loginForm.get('password').errors?.minlength">
+                              Enter Valid password
+                            </span>
+                        </span>
+                    </div>
+                  </div>
+                  <br>
+                  <div class="container">
+                    <button type="submit" class="btn btn-primary" (click)="validateCred($event)"
+                              [disabled]="!loginForm.valid">Login</button>
+                
+                    <a [routerLink] ="['/signup']" title="SIGN UP TO NGIF">
+                      <p>Not a USER? SIGN UP!</p>
+                    </a>
+                  </div>
+            
+                </form>
+        </div>
+    </div>
+        
+    </div>
+    

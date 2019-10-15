@@ -5,5 +5,5 @@ export class User {
     contactNumber: string;
     role: string;
     manager: string;
-    director: string;
+    //director: string;
 }
